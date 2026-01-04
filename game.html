@@ -2,20 +2,20 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Game</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="hud">
-❤️ Nyawa: <span id="life">3</span> |
-🔍 Ditemukan: <span id="found">0</span>/5
+❤️ <span id="life">3</span> |
+🔍 <span id="found">0</span>/5
+<button onclick="showHint()">💡 Hint</button>
 </div>
 <div class="game-area">
-<img id="imgA">
-<img id="imgB">
+<div class="img-wrap"><img id="imgA"><canvas id="cA"></canvas></div>
+<div class="img-wrap"><img id="imgB"><canvas id="cB"></canvas></div>
 </div>
-<button onclick="document.documentElement.requestFullscreen()">⛶ Fullscreen</button>
 <script src="js/levels.js"></script>
 <script src="js/game.js"></script>
 </body>
