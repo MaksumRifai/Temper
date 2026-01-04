@@ -1,36 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temukan Perbedaan</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temukan Perbedaan</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="home-screen" class="screen">
-        <h1>Temukan Perbedaan</h1>
-        <div id="level-gallery" class="gallery"></div>
-        <button onclick="resetProgress()" class="btn-danger">Reset Progres</button>
-    </div>
-
-    <div id="game-screen" class="screen" style="display:none;">
-        <div class="header">
-            <button onclick="showHome()">⬅ Menu</button>
-            <h2 id="lvl-title">Level 1</h2>
-            <div class="stats">
-                <button id="hint-btn" onclick="useHint()">💡 <span id="hint-val">3</span></button>
-                <span>❤️ <span id="life-val">3</span></span>
-                <span>🎯 <span id="score-val">0</span>/5</span>
-            </div>
-        </div>
-        <div class="main-game">
-            <div class="img-box"><img id="img-a"></div>
-            <div class="img-box" id="click-zone" onclick="wrongClick(event)">
-                <img id="img-b">
-                <div id="hotspots"></div>
-            </div>
-        </div>
-    </div>
-    <script src="/assets/js/script.js"></script>
+<h1>Temukan Perbedaan</h1>
+<div class="level-grid" id="levelGrid"></div>
+<script src="js/levels.js"></script>
+<script src="js/home.js"></script>
 </body>
 </html>
