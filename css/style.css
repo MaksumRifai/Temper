@@ -10,11 +10,12 @@ body {
   gap:12px;padding:16px
 }
 .game-area {
+  min-width:1000px;
   display:flex;
-  gap:10px;
+  gap:10px;padding:16px;
   justify-content:center;
   flex-wrap:wrap;
-  flex-direction: row;
+  flex-direction:row
 }
 .img-wrap {
   position:relative
