@@ -13,8 +13,8 @@ body {
   display:flex;
   gap:10px;
   justify-content:center;
-  flex-wrap:wrap
-  flex-direction: column;
+  flex-wrap:wrap;
+  flex-direction: row;
 }
 .img-wrap {
   position:relative
