@@ -1,7 +1,5 @@
 body{background:#111;color:#fff;font-family:Arial;text-align:center}
-.level-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:12px;padding:20px}
-.level-card{border-radius:10px;overflow:hidden}
-.level-card img{width:100%}
-.locked{filter:grayscale(1);opacity:.5}
+.level-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:12px;padding:16px}
 .game-area{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.game-area img{width:45%;cursor:crosshair}
+.img-wrap{position:relative}
+canvas{position:absolute;left:0;top:0}
