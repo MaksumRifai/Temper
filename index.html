@@ -4,47 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temukan Perbedaan</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
     <div id="home-screen" class="screen">
-        <h1>Pilih Level</h1>
-        <div class="level-gallery">
-            <div class="level-card" onclick="startLevel(1)">
-                <img src="thumb1.jpg" alt="Level 1">
-                <span>Level 1: Taman</span>
-            </div>
-            <div class="level-card" onclick="startLevel(2)">
-                <img src="thumb2.jpg" alt="Level 2">
-                <span>Level 2: Dapur</span>
-            </div>
-            <div class="level-card" onclick="startLevel(3)">
-                <img src="thumb3.jpg" alt="Level 3">
-                <span>Level 3: Luar Angkasa</span>
-            </div>
-        </div>
+        <h1>Temukan Perbedaan</h1>
+        <div id="level-gallery" class="gallery"></div>
+        <button onclick="resetProgress()" class="btn-danger">Reset Progres</button>
     </div>
 
-    <div id="game-screen" class="screen" style="display: none;">
-        <div class="game-header">
-            <button onclick="showHome()">⬅ Kembali</button>
+    <div id="game-screen" class="screen" style="display:none;">
+        <div class="header">
+            <button onclick="showHome()">⬅ Menu</button>
+            <h2 id="lvl-title">Level 1</h2>
             <div class="stats">
-                <span>Nyawa: <span id="lives">3</span> ❤️</span>
-                <span>Skor: <span id="score">0</span>/3</span>
+                <button id="hint-btn" onclick="useHint()">💡 <span id="hint-val">3</span></button>
+                <span>❤️ <span id="life-val">3</span></span>
+                <span>🎯 <span id="score-val">0</span>/5</span>
             </div>
         </div>
-
-        <div class="image-container" id="image-area">
-            <div class="image-box">
-                <img id="img-original" src="" alt="Asli">
+        <div class="main-game">
+            <div class="img-box"><img id="img-a"></div>
+            <div class="img-box" id="click-zone" onclick="wrongClick(event)">
+                <img id="img-b">
+                <div id="hotspots"></div>
             </div>
-            <div class="image-box" id="img-diff-box">
-                <img id="img-modified" src="" alt="Modifikasi">
-                </div>
         </div>
     </div>
-
-    <script src="script.js"></script>
+    <script src="/assets/js/script.js"></script>
 </body>
 </html>
