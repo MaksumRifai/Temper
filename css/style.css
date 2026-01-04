@@ -1,5 +1,36 @@
-body{background:#111;color:#fff;font-family:Arial;text-align:center}
-.level-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:12px;padding:16px}
-.game-area{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.img-wrap{position:relative}
-canvas{position:absolute;left:0;top:0}
+body {
+  background:#111;
+  color:#fff;
+  font-family:Arial;
+  text-align:center
+}
+.level-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
+  gap:12px;padding:16px
+}
+<!--
+.game-area {
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap
+}
+  -->
+.img-wrap {
+  position:relative
+}
+canvas {
+  position:absolute;left:0;top:0
+}
+
+.game-area {
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .game-area {
+    flex-direction: row;
+  }
+}
+
