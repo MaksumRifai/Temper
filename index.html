@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temukan Perbedaan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="home-screen" class="screen">
+        <h1>Pilih Level</h1>
+        <div class="level-gallery">
+            <div class="level-card" onclick="startLevel(1)">
+                <img src="thumb1.jpg" alt="Level 1">
+                <span>Level 1: Taman</span>
+            </div>
+            <div class="level-card" onclick="startLevel(2)">
+                <img src="thumb2.jpg" alt="Level 2">
+                <span>Level 2: Dapur</span>
+            </div>
+            <div class="level-card" onclick="startLevel(3)">
+                <img src="thumb3.jpg" alt="Level 3">
+                <span>Level 3: Luar Angkasa</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen" style="display: none;">
+        <div class="game-header">
+            <button onclick="showHome()">⬅ Kembali</button>
+            <div class="stats">
+                <span>Nyawa: <span id="lives">3</span> ❤️</span>
+                <span>Skor: <span id="score">0</span>/3</span>
+            </div>
+        </div>
+
+        <div class="image-container" id="image-area">
+            <div class="image-box">
+                <img id="img-original" src="" alt="Asli">
+            </div>
+            <div class="image-box" id="img-diff-box">
+                <img id="img-modified" src="" alt="Modifikasi">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
