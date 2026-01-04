@@ -1,0 +1,18 @@
+body { font-family: sans-serif; background: #1a1a2e; color: #fff; text-align: center; margin: 0; }
+.screen { padding: 20px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; max-width: 800px; margin: 20px auto; }
+.level-card { background: #16213e; padding: 20px; border-radius: 8px; cursor: pointer; border: 2px solid #0f3460; }
+.level-card.locked { opacity: 0.4; cursor: not-allowed; }
+.level-card.completed { border-color: #2ecc71; color: #2ecc71; }
+
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.main-game { display: flex; justify-content: center; gap: 10px; }
+.img-box { position: relative; width: 48%; border: 2px solid #fff; line-height: 0; }
+.img-box img { width: 100%; height: auto; user-select: none; pointer-events: none; }
+
+.hotspot { position: absolute; width: 40px; height: 40px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; }
+.hotspot.found { border: 3px solid #2ecc71; background: rgba(46, 204, 113, 0.3); pointer-events: none; }
+.hint-glow { border: 3px solid #f1c40f; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { scale: 1; } 50% { scale: 1.3; } 100% { scale: 1; } }
+.shake { animation: shake 0.3s; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
