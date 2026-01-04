@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Level Editor</title></head>
+<body>
+<h2>Editor Level (Klik 5x)</h2>
+<img id="img" src="assets/levels/level1/img1.webp" style="max-width:500px;cursor:crosshair">
+<pre id="out"></pre>
+<script>
+const img=document.getElementById('img');
+let diffs=[];
+img.onclick=e=>{
+ const r=img.getBoundingClientRect();
+ diffs.push({x:e.clientX-r.left,y:e.clientY-r.top,r:20});
+ document.getElementById('out').textContent=JSON.stringify(diffs,null,2);
+}
+</script>
+</body>
+</html>
