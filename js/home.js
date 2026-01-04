@@ -1,14 +1,12 @@
-const grid=document.getElementById('levelGrid');
-const unlocked=Number(localStorage.getItem('unlockedLevel'))||1;
+const g=document.getElementById('levelGrid');
+const u=Number(localStorage.getItem('unlockedLevel'))||1;
 LEVELS.forEach(l=>{
- const c=document.createElement('div');
- c.className='level-card';
- if(l.id<=unlocked){
-  c.innerHTML=`<img src="${l.imageA}"><span>Level ${l.id}</span>`;
-  c.onclick=()=>location.href=`game.html?level=${l.id}`;
+ const d=document.createElement('div');
+ if(l.id<=u){
+  d.innerHTML=`<img src="${l.imageA}" width="100"><div>Level ${l.id}</div>`;
+  d.onclick=()=>location.href=`game.html?level=${l.id}`;
  }else{
-  c.classList.add('locked');
-  c.innerHTML=`<img src="${l.imageA}"><span>🔒 Level ${l.id}</span>`;
+  d.innerHTML=`<img src="${l.imageA}" width="100" style="filter:grayscale(1);opacity:.4"><div>🔒</div>`;
  }
- grid.appendChild(c);
+ g.appendChild(d);
 });
