@@ -1,0 +1,1 @@
+const LEVELS=[{id:1,imageA:'assets/levels/level1/img1.webp',imageB:'assets/levels/level1/img2.webp',differences:[{x:120,y:80,r:20},{x:250,y:140,r:20},{x:360,y:210,r:20},{x:180,y:300,r:20},{x:420,y:90,r:20}]}];
