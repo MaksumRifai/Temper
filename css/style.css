@@ -26,15 +26,17 @@ body {
   padding:16px
 }
 .img-wrap {
-  position:relative
+  position:relative;
+  width: 500px
+  height: auto!
 }
 canvas {
   position: absolute;
   left: 0;
   top: 0;
   pointer-events: none; /* Tambahkan ini agar klik tembus ke gambar */
-  width: 100%;  /* Pastikan canvas mengikuti lebar pembungkusnya */
-  height: 100%; /* Pastikan canvas mengikuti tinggi pembungkusnya */
+  width: 500px;  /* Pastikan canvas mengikuti lebar pembungkusnya */
+  height: auto; /* Pastikan canvas mengikuti tinggi pembungkusnya */
 }
 /* FLASH EFFECT */
 .flash-correct {
