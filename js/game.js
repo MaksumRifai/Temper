@@ -72,6 +72,15 @@ function effectWrong(img) {
   }
 }
 
+// draw a green circle for correct hits on a canvas context
+function drawCorrectCircle(ctx, d) {
+  ctx.strokeStyle = "lime";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.arc(d.x, d.y, d.r + 5, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
 imgA.src=lvl.imageA;imgB.src=lvl.imageB;
 function showHint(){
  if(usedHint) return;
@@ -94,6 +103,12 @@ document.querySelectorAll('img').forEach(img=>{
    if(!hit.has(i)&&Math.hypot(x-d.x,y-d.y)<d.r){
     hit.add(i);found++;ok=true;
     document.getElementById('found').textContent=found;
+
+    // draw the green circle on both canvases to indicate discovered difference
+    [cA, cB].forEach(c => {
+      const ctx = c.getContext('2d');
+      drawCorrectCircle(ctx, d);
+    });
    }
   });
   if(ok){
