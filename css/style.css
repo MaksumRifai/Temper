@@ -16,6 +16,10 @@ body {
   flex-wrap:wrap;
   flex-direction:row
 }
+.game-area img {
+  width: 500px;
+  height: auto;
+}
 .hud {
   justify-content:center;
   gap:10px;
