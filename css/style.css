@@ -29,9 +29,13 @@ body {
   position:relative
 }
 canvas {
-  position:absolute;left:0;top:0
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none; /* Tambahkan ini agar klik tembus ke gambar */
+  width: 100%;  /* Pastikan canvas mengikuti lebar pembungkusnya */
+  height: 100%; /* Pastikan canvas mengikuti tinggi pembungkusnya */
 }
-
 /* FLASH EFFECT */
 .flash-correct {
   animation: flashGreen 0.3s;
