@@ -1,20 +1,66 @@
 const id=Number(new URLSearchParams(location.search).get('level'));
 const lvl=LEVELS.find(l=>l.id===id);
 let life=3,found=0,usedHint=false,hit=new Set();
+let locked = false; // prevent actions while finishing (playing end sound / redirect)
 
 const soundCorrect = new Audio("assets/sounds/correct.mp3");
 const soundWrong = new Audio("assets/sounds/wrong.mp3");
+// updated sound paths to match existing assets directory
+const soundFailed = new Audio("assets/sounds/failed.mp3");
+const soundDone = new Audio("assets/sounds/done.mp3");
+
+function playAndThen(sound, onEnd) {
+  // Play the sound and call onEnd when playback finishes.
+  // If playback is blocked or fails, call onEnd immediately.
+  let fallbackTimer = null;
+  function finish() {
+    if (fallbackTimer) clearTimeout(fallbackTimer);
+    onEnd();
+  }
+
+  // Ensure we only call onEnd once even if multiple events fire
+  const onceEnd = () => finish();
+
+  // Try to play
+  try {
+    sound.currentTime = 0;
+  } catch (e) {
+    // ignore
+  }
+
+  const playPromise = sound.play();
+  // Add ended listener
+  sound.addEventListener('ended', onceEnd, { once: true });
+
+  // Fallback: if duration is available, use it; otherwise use 5s.
+  const durMs = (Number.isFinite(sound.duration) && sound.duration > 0)
+    ? Math.round(sound.duration * 1000) + 200
+    : 5000;
+  fallbackTimer = setTimeout(() => {
+    // If ended didn't fire, fallback
+    try { sound.removeEventListener('ended', onceEnd); } catch (e) {}
+    finish();
+  }, durMs);
+
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(() => {
+      // Playback failed (autoplay policy, etc.) — run onEnd immediately
+      try { sound.removeEventListener('ended', onceEnd); } catch (e) {}
+      finish();
+    });
+  }
+}
 
 function effectCorrect(img) {
   soundCorrect.currentTime = 0;
-  soundCorrect.play();
+  soundCorrect.play().catch(()=>{}); // ignore play errors
   img.classList.add("flash-correct");
   setTimeout(() => img.classList.remove("flash-correct"), 300);
 }
 
 function effectWrong(img) {
   soundWrong.currentTime = 0;
-  soundWrong.play();
+  soundWrong.play().catch(()=>{}); // ignore play errors
 
   img.classList.add("flash-wrong", "shake");
   setTimeout(() => {
@@ -40,6 +86,7 @@ function showHint(){
 }
 document.querySelectorAll('img').forEach(img=>{
  img.onclick=e=>{
+  if (locked) return; // ignore clicks while finishing
   const r=img.getBoundingClientRect();
   const x=e.clientX-r.left,y=e.clientY-r.top;
   let ok=false;
@@ -56,10 +103,22 @@ document.querySelectorAll('img').forEach(img=>{
     life--;
     document.getElementById('life').textContent=life;
   }
-  if(life<=0){alert('Game Over');location.href='index.html'}
+  if(life<=0){
+    // play failed sound on Game Over, wait until it finishes, then alert and redirect
+    locked = true;
+    playAndThen(soundFailed, () => {
+      alert('Game Over');
+      location.href='index.html';
+    });
+  }
   if(found===5){
+   // unlock level immediately, then play done sound and wait before redirecting
    localStorage.setItem('unlockedLevel',id+1);
-   alert('Selesai');location.href='index.html'
+   locked = true;
+   playAndThen(soundDone, () => {
+     alert('Selesai');
+     location.href='index.html';
+   });
   }
  }
 });
