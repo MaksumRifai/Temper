@@ -1,6 +1,31 @@
 const id=Number(new URLSearchParams(location.search).get('level'));
 const lvl=LEVELS.find(l=>l.id===id);
 let life=3,found=0,usedHint=false,hit=new Set();
+
+const soundCorrect = new Audio("assets/sounds/correct.mp3");
+const soundWrong = new Audio("assets/sounds/wrong.mp3");
+
+function effectCorrect(img) {
+  soundCorrect.currentTime = 0;
+  soundCorrect.play();
+  img.classList.add("flash-correct");
+  setTimeout(() => img.classList.remove("flash-correct"), 300);
+}
+
+function effectWrong(img) {
+  soundWrong.currentTime = 0;
+  soundWrong.play();
+
+  img.classList.add("flash-wrong", "shake");
+  setTimeout(() => {
+    img.classList.remove("flash-wrong", "shake");
+  }, 300);
+
+  if (navigator.vibrate) {
+    navigator.vibrate(200);
+  }
+}
+
 imgA.src=lvl.imageA;imgB.src=lvl.imageB;
 function showHint(){
  if(usedHint) return;
@@ -24,7 +49,13 @@ document.querySelectorAll('img').forEach(img=>{
     document.getElementById('found').textContent=found;
    }
   });
-  if(!ok){life--;document.getElementById('life').textContent=life}
+  if(ok){
+    effectCorrect(img);
+  } else {
+    effectWrong(img);
+    life--;
+    document.getElementById('life').textContent=life;
+  }
   if(life<=0){alert('Game Over');location.href='index.html'}
   if(found===5){
    localStorage.setItem('unlockedLevel',id+1);
