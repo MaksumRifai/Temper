@@ -72,7 +72,8 @@ function effectWrong(img) {
   }
 }
 
-// draw a green circle for correct hits on a canvas context
+<!--
+  draw a green circle for correct hits on a canvas context
 function drawCorrectCircle(ctx, d) {
   ctx.strokeStyle = "lime";
   ctx.lineWidth = 4;
@@ -80,6 +81,7 @@ function drawCorrectCircle(ctx, d) {
   ctx.arc(d.x, d.y, d.r + 5, 0, Math.PI * 2);
   ctx.stroke();
 }
+-->
 
 imgA.src=lvl.imageA;imgB.src=lvl.imageB;
 function showHint(){
